@@ -39,11 +39,15 @@ public class TestController {
 
     @PostMapping("/findOrderById")
     public ResponseEntity findOrderById(Integer id) {
-        Optional<TOrder> oneOrderById = orderMapper.findOneOrderById(id);
-        if (oneOrderById.isPresent()){
-            TOrder tOrder = oneOrderById.get();
-            return ResponseEntity.ok(tOrder);
+        TOrder oneOrderById = orderMapper.findOneOrderById(id);
+//        if (oneOrderById.isPresent()){
+//            TOrder tOrder = oneOrderById.get();
+//            return ResponseEntity.ok(tOrder);
+//        }
+        if (oneOrderById==null){
+            return ResponseEntity.ok().body("数据不存在");
+        }else{
+            return ResponseEntity.ok(oneOrderById);
         }
-        return ResponseEntity.ok().body("数据不存在");
     }
 }

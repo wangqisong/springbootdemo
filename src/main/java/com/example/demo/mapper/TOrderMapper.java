@@ -1,10 +1,7 @@
 package com.example.demo.mapper;
 
 import com.example.demo.pojo.TOrder;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Options;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.Optional;
 
@@ -17,5 +14,9 @@ public interface TOrderMapper {
     int insertOrder(TOrder tOrder);
 
     @Select("select * from t_order where id=#{id}")
-    Optional<TOrder> findOneOrderById(Integer id);
+    /*@Results({
+            @Result(property = "orderNum", column = "order_num"),
+            @Result(property = "ownerId", column = "owner_id"),
+    })*/
+    TOrder findOneOrderById(Integer id);
 }
